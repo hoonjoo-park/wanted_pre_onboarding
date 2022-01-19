@@ -10,6 +10,8 @@ import Six from './images/six.jpeg';
 import Seven from './images/seven.jpeg';
 import Eight from './images/eight.jpeg';
 import Nine from './images/nine.jpeg';
+import Alert from './images/alert.svg';
+
 export {
   Favicon,
   HorizontalText,
@@ -23,4 +25,5 @@ export {
   Seven,
   Eight,
   Nine,
+  Alert,
 };

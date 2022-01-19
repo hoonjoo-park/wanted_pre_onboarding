@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { FiMenu } from 'react-icons/fi';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaRegBell } from 'react-icons/fa';
-import { HorizontalText, MyProfile } from '../Image';
+import { FiMoreHorizontal } from 'react-icons/fi';
+
+import { Alert, HorizontalText, MyProfile } from '../Image';
 function Header() {
   return (
     <Head>
@@ -30,9 +32,14 @@ function Header() {
               <AiOutlineSearch />
             </li>
             <li className="alert">
+              <img className="alert" src={Alert} alt="alert" />
               <FaRegBell />
             </li>
-            <ProfileBox>
+            <li className="more">
+              <FiMoreHorizontal />
+            </li>
+            <ProfileBox className="profileBox">
+              <img className="profileAlert" src={Alert} alt="alert" />
               <img src={MyProfile} alt="profile" />
             </ProfileBox>
           </ul>
@@ -50,6 +57,9 @@ const Head = styled.div`
   width: 100vw;
   height: 50px;
   box-shadow: 0 1px 0 0 rgb(0 0 0 / 10%);
+  @media screen and (max-width: 990px) {
+    height: 110px;
+  }
 `;
 const Nav = styled.nav`
   display: flex;
@@ -58,6 +68,11 @@ const Nav = styled.nav`
   margin: auto;
   width: 66.25rem;
   height: 100%;
+  flex-wrap: wrap;
+  @media screen and (max-width: 990px) {
+    height: 50%;
+    padding: 0 1.5em;
+  }
 `;
 const LeftSection = styled.div`
   display: flex;
@@ -67,6 +82,15 @@ const LeftSection = styled.div`
     font-size: 1.4rem;
     margin-right: 0.6rem;
   }
+  @media screen and (max-width: 990px) {
+    width: 100%;
+    & > svg {
+      font-size: 1.6rem;
+    }
+    & img {
+      width: 5rem;
+    }
+  }
 `;
 const CenterSection = styled.ul`
   display: flex;
@@ -74,11 +98,12 @@ const CenterSection = styled.ul`
   justify-content: space-around;
   height: 100%;
   width: 33.3rem;
+  flex-basis: 60%;
   & > li {
     position: relative;
     font-size: 14px;
     font-weight: 600;
-    padding: 15px;
+    padding: 10px;
   }
   & > li.communityNav::after {
     position: absolute;
@@ -86,8 +111,8 @@ const CenterSection = styled.ul`
     color: #3366ff;
     font-size: 1px;
     font-weight: 400;
-    top: 20%;
-    right: -8%;
+    top: 15%;
+    right: -13%;
   }
   & > li.aiPredictNav::after {
     position: absolute;
@@ -95,8 +120,8 @@ const CenterSection = styled.ul`
     color: #3366ff;
     font-size: 1px;
     font-weight: 400;
-    top: 20%;
-    right: -8%;
+    top: 15%;
+    right: -13%;
   }
 `;
 const Logo = styled.img`
@@ -107,6 +132,9 @@ const RightSection = styled.ul`
   align-items: center;
   height: 100%;
   width: 251.56px;
+  & .more {
+    display: none;
+  }
   & > ul {
     display: flex;
     justify-content: space-around;
@@ -115,25 +143,15 @@ const RightSection = styled.ul`
     height: 100%;
     & > li {
       position: relative;
+      & > img.alert {
+        position: absolute;
+        width: 12px;
+        right: -20%;
+        top: -30%;
+      }
     }
     & svg {
       font-size: 1.2rem;
-    }
-    & li.alert::after {
-      position: absolute;
-      content: 'N';
-      height: 10px;
-      width: 10px;
-      line-height: 10px;
-      text-align: center;
-      top: -35%;
-      right: -40%;
-      padding: 1.5px;
-      border-radius: 5px;
-      color: #ffffff;
-      background-color: #3366ff;
-      font-size: 0.5px;
-      font-weight: 600;
     }
   }
   & > hr {
@@ -151,6 +169,25 @@ const RightSection = styled.ul`
     font-size: 13px;
     font-weight: 400;
     padding: 0 10px;
+    @media screen and (max-width: 990px) {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    width: 120px;
+    margin-left: auto;
+    & > ul {
+      width: 100%;
+    }
+    & > hr {
+      display: none;
+    }
+    & .more {
+      display: block;
+    }
+    & .profileBox {
+      display: none;
+    }
   }
 `;
 const ProfileBox = styled.li`
@@ -161,21 +198,11 @@ const ProfileBox = styled.li`
   border: 1px solid #e1e2e3;
   border-radius: 50%;
   padding: 0.05em;
-  &::after {
+  & > img.profileAlert {
     position: absolute;
-    content: 'N';
-    height: 10px;
-    width: 10px;
-    line-height: 12px;
-    text-align: center;
+    width: 13px;
+    right: -20%;
     top: -20%;
-    right: -25%;
-    padding: 1.5px;
-    border-radius: 5px;
-    color: #ffffff;
-    background-color: #3366ff;
-    font-size: 0.5px;
-    font-weight: 600;
   }
   & > img {
     width: 1.7rem;
