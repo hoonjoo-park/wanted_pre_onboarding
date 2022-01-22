@@ -4,45 +4,44 @@ import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
 import { One, Two, Three, Four, Five, Six, Seven, Eight, Nine } from '../Image';
 function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(3);
-  const [distance, setDistance] = useState(1875);
+  const [distance, setDistance] = useState(110.5);
   const [timing, setTiming] = useState(0.3);
   const slideCarousel = useRef();
   const moveLeft = () => {
-    if (currentIndex <= 2) {
-    } else {
+    if (currentIndex > 2) {
       setCurrentIndex(currentIndex - 1);
       setTiming(0.3);
-      setDistance(distance - 1086);
+      setDistance(distance - 64.5);
+      return;
     }
   };
   const moveRight = () => {
-    if (currentIndex >= 12) {
-    } else {
+    if (currentIndex < 12) {
       setCurrentIndex(currentIndex + 1);
       setTiming(0.3);
-      setDistance(distance + 1086);
+      setDistance(distance + 64.5);
+      return;
     }
   };
   const handleFlip = () => {
     if (currentIndex <= 2) {
       setCurrentIndex(11);
       setTiming(0);
-      setDistance(10562);
+      setDistance(626.5);
     }
     if (currentIndex >= 12) {
       setCurrentIndex(3);
       setTiming(0);
-      setDistance(1875);
+      setDistance(110.5);
     }
   };
   const interval = useRef(null);
   useEffect(() => {
     interval.current = setInterval(() => {
-      if (currentIndex >= 12) {
-      } else {
-        setCurrentIndex(currentIndex + 1);
+      if (currentIndex > 2) {
+        setCurrentIndex(currentIndex - 1);
         setTiming(0.3);
-        setDistance(distance + 1086);
+        setDistance(distance - 64.5);
       }
     }, 3000);
     return () => clearInterval(interval.current);
@@ -263,7 +262,7 @@ const CarouselContainer = styled.div`
   min-width: 100vw;
   width: 100%;
   height: 300px;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   overflow-y: visible;
   & button {
     position: absolute;
@@ -297,7 +296,9 @@ const Slider = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  transform: ${(props) => `translateX(-${props.distance}px)`};
+  /* transform: translateX(calc(-89vw - 48px)); */
+  /* transform: translateX(calc(-46vw)); */
+  transform: ${(props) => `translateX(-${props.distance}vw)`};
   transition: ${(props) => `transform ${props.timing}s ease`};
 `;
 const Banner = styled.div`
@@ -306,7 +307,7 @@ const Banner = styled.div`
   height: 100%;
   border-radius: 4px;
   padding: 0 12px;
-  margin: 0 13px;
+  margin-right: 1.5vw;
   overflow-y: visible;
   &.center > div {
     opacity: 1;
